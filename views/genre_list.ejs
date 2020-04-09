@@ -1,0 +1,15 @@
+<h1>Genre List</h1>
+
+<ul>
+  <% if (genre_list.length > 0) { %>
+    <% genre_list.forEach(genre => { %>
+      <li>
+        <a href="<%= genre.url %>">
+          <%= genre.name %>
+        </a>
+      </li>
+    <% }) %>
+  <% } else { %>
+    <li>There are no genres.</li>
+  <% } %>
+</ul>
