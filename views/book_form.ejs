@@ -1,0 +1,94 @@
+<h1><%= title %></h1>
+
+<form action="" method="POST">
+  <div class="form-group">
+    <label for="title">Title:</label>
+    <input 
+      type="text"
+      placeholder="Name of book"
+      id="title"
+      class="form-control"
+      required="true"
+      name="title"
+      value="<%= locals.book ? book.title : '' %>"
+      >
+  </div>
+  <div class="form-group">
+    <label for="author">Author:</label>
+    <select 
+      name="author" 
+      id="author"
+      class="form-control"
+      type="select"
+      placeholder="Select author"
+      required="true"
+    >
+      <% authors.sort(function(a, b) { %>
+        <% let textA = a.family_name.toUpperCase(); %>
+        <% let textB = b.family_name.toUpperCase(); %>
+        <% return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;  %>
+      <% }); %>
+      <% authors.forEach(author => { %>
+        <% if (locals.book) { %>
+          <option 
+            value="<%= author._id %>"
+            selected="<%= author._id.toString() == book.author ? 'selected' : false %>"
+          ><%= author.name %></option>
+        <% } else { %>
+          <option 
+            value="<%= author._id %>"
+          ><%= author.name %></option>
+        <% } %>
+      <% }) %>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="summary">Summary:</label>
+    <textarea 
+      name="summary" 
+      type="textarea"
+      placeholder="Summary"
+      required="true"
+      class="form-control"
+      id="summary"
+      rows="3"
+    ><%= locals.book ? book.summary : '' %></textarea>
+  </div>
+  <div class="form-group">
+    <label for="isbn">ISBN:</label>
+    <input 
+      type="text"
+      placeholder="ISBN13"
+      name="isbn"
+      class="form-control"
+      value="<%= locals.book ? book.isbn : '' %>"
+      required="true"
+    >
+  </div>
+  <div class="form-group">
+    <label for="genre">Genre:</label>
+    <div>
+      <% genres.forEach(genre => { %>
+        <div style="display: inline; padding-right: 10px;">
+          <input 
+            type="checkbox" 
+            class="checkbox-input"
+            name="genre"
+            id="<%= genre._id %>"
+            value="<%= genre._id %>"
+            checked="<%= genre.checked %>"
+          >
+          <label for="<%= genre._id %>"><%= genre.name %></label>
+        </div>
+        <% }) %>
+        <button class="btn btn-primary" type="submit">Submit</button>
+    </div>
+  </div>
+  <% if (locals.errors) { %>
+    <ul>
+      <% errors.forEach(error => { %>
+        <li><%= error.msg %></li>
+      <% }) %>
+    </ul>
+  <% } %>
+</form>
