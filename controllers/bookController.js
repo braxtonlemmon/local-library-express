@@ -6,7 +6,6 @@ const BookInstance = require('../models/bookinstance');
 
 const async = require('async');
 
-
 exports.index = function(req, res) {
   async.parallel({
     book_count: function(callback) {
@@ -28,7 +27,6 @@ exports.index = function(req, res) {
     res.render('index', { title: 'Local Library Home', error: err, data: results });
   });
 }
-
 
 // Display list of all books.
 exports.book_list = function(req, res, next) {
@@ -141,6 +139,15 @@ exports.book_create_post = [
     }
   }
 ];
+
+
+
+
+
+
+
+
+
 
 // Display book delete form on GET.
 exports.book_delete_get = function (req, res) {
