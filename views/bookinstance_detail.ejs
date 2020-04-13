@@ -16,4 +16,7 @@
   <p>Due back: <%= bookinstance.due_back_formatted %></p>
 <% } %>
 <hr>
-<p><a href="<%= `${bookinstance.url}/delete` %>">Delete book instance</a></p>
+<p>
+  <a href="<%= `${bookinstance.url}/delete` %>">Delete book instance</a>
+  <a href="<%= `${bookinstance.url}/update` %>">Update book instance</a>
+</p>

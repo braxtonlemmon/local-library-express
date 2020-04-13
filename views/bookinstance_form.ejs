@@ -20,7 +20,7 @@
         <% if (locals.bookinstance)  { %>
           <option 
             value="book._id" 
-            selected="<%= bookinstance.book.toString() === book._id.toString() ? 'selected' : false %> "
+            selected="<%= (bookinstance.book.toString() === book._id.toString() || bookinstance.book._id === book._id.toString()) ? 'selected' : false %> "
           >
             <%= book.title %> 
           </option>    
@@ -49,8 +49,9 @@
       id="du_back" 
       class="form-control"
       type="date"
-      value="<%= locals.bookinstance? bookinstance.due_back : '' %>"
+      value="<%= locals.bookinstance? bookinstance.due_back_form : '' %>"
     ></input>
+
   </div>
   <div class="form-group">
     <label for="status">Status:</label>

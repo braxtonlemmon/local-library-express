@@ -32,7 +32,7 @@
         <% if (locals.book) { %>
           <option 
             value="<%= author._id %>"
-            selected="<%= author._id.toString() == book.author ? 'selected' : false %>"
+            selected="<%= (author._id.toString() == book.author._id || author._id.toString() == book.author) ? 'selected' : false %>"
           ><%= author.name %></option>
         <% } else { %>
           <option 
